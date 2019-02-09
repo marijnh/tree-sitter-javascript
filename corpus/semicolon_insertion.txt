@@ -12,7 +12,7 @@ if (a) {
 ---
 
 (program
-  (if_statement (parenthesized_expression (identifier)) (statement_block
+  (if_statement (identifier) (statement_block
     (variable_declaration (variable_declarator (identifier) (identifier)))
     (expression_statement (call_expression (identifier) (arguments)))
     (expression_statement (call_expression (identifier) (arguments)))
@@ -33,16 +33,16 @@ if (a)
 ---
 (program
   (if_statement
-    (parenthesized_expression (identifier))
+    (identifier)
     (expression_statement
       (call_expression (identifier) (arguments))))
   (expression_statement (update_expression (identifier)))
 
   (if_statement
-    (parenthesized_expression (identifier))
+    (identifier)
     (expression_statement
       (call_expression (identifier) (arguments))))
-  (expression_statement (update_expression (identifier)))) 
+  (expression_statement (update_expression (identifier))))
 
 ==========================================
 property access across lines
@@ -69,7 +69,7 @@ indented code after blocks
 ---
 
 (program
-  (function
+  (function_declaration
     (identifier)
     (formal_parameters)
     (statement_block))
@@ -156,7 +156,7 @@ if (a) {b} else {c}
 ---
 
 (program
-  (if_statement (parenthesized_expression (identifier))
+  (if_statement (identifier)
     (statement_block (expression_statement (identifier)))
     (statement_block (expression_statement (identifier)))))
 
@@ -170,9 +170,9 @@ function c() {return d}
 ---
 
 (program
-  (function (identifier) (formal_parameters) (statement_block
+  (function_declaration (identifier) (formal_parameters) (statement_block
     (expression_statement (identifier))))
-  (function (identifier) (formal_parameters) (statement_block
+  (function_declaration (identifier) (formal_parameters) (statement_block
     (return_statement (identifier)))))
 
 ==============================================
@@ -213,29 +213,29 @@ if (p) { var q }
 ---
 
 (program
-  (if_statement (parenthesized_expression (identifier)) (statement_block
+  (if_statement (identifier) (statement_block
     (if_statement
-      (parenthesized_expression (identifier))
+      (identifier)
       (return_statement (identifier)))))
-  (if_statement (parenthesized_expression (identifier)) (statement_block
+  (if_statement (identifier) (statement_block
     (for_statement
       (empty_statement)
       (empty_statement)
       (break_statement))))
-  (if_statement (parenthesized_expression (identifier)) (statement_block
+  (if_statement (identifier) (statement_block
     (for_in_statement (identifier) (identifier)
       (break_statement))))
-  (if_statement (parenthesized_expression (identifier)) (statement_block
+  (if_statement (identifier) (statement_block
     (for_of_statement (identifier) (identifier)
       (continue_statement))))
-  (if_statement (parenthesized_expression (identifier)) (statement_block
-    (while_statement (parenthesized_expression (identifier))
+  (if_statement (identifier) (statement_block
+    (while_statement (identifier)
       (break_statement))))
-  (if_statement (parenthesized_expression (identifier)) (statement_block
+  (if_statement (identifier) (statement_block
     (do_statement
       (statement_block (expression_statement (identifier)))
-      (parenthesized_expression (identifier)))))
-  (if_statement (parenthesized_expression (identifier)) (statement_block
+      (identifier))))
+  (if_statement (identifier) (statement_block
     (variable_declaration (variable_declarator (identifier))))))
 
 =====================================================
@@ -246,10 +246,10 @@ function a () { function b () {} function *c () {} class D {} return }
 ---
 
 (program
-  (function (identifier) (formal_parameters) (statement_block
-    (function (identifier) (formal_parameters) (statement_block))
-    (generator_function (identifier) (formal_parameters) (statement_block))
-    (class (identifier) (class_body))
+  (function_declaration (identifier) (formal_parameters) (statement_block
+    (function_declaration (identifier) (formal_parameters) (statement_block))
+    (generator_function_declaration (identifier) (formal_parameters) (statement_block))
+    (class_declaration (identifier) (class_body))
     (return_statement))))
 
 =====================================================
